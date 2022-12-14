@@ -29,12 +29,7 @@ pass: 1bf9143#0b075f7c6
 kill -9 $(ps aux | grep '\snode\s' | awk '{print $2}')
 ### kill by port
 kill -9 $(lsof -t -i:3000)
-============ outofmemory
-+7 929 631 4900
-Telegram :@Zaxonline
-## About me
-nur
-kazakhstan
+
 
 
 ### burpsuite
