@@ -1,0 +1,51 @@
+============= live server ===============
+https://playge.to/
+
+ssh root@137.184.195.2
+1qw2!QW@q
+
+### Database
+137.184.195.2
+3306
+webuser
+1bf9@43#0b075f7cA
+
+
+
+
+============ dev server
+http://192.34.61.117/
+
+ssh root@192.34.61.117
+9q-uMM,wWywp@S
+cd /var/www
+
+mysql
+port: default
+user: webuser
+pass: 1bf9143#0b075f7c6
+
+============ ubuntu
+kill -9 $(ps aux | grep '\snode\s' | awk '{print $2}')
+### kill by port
+kill -9 $(lsof -t -i:3000)
+============ outofmemory
++7 929 631 4900
+Telegram :@Zaxonline
+## About me
+nur
+kazakhstan
+
+
+### burpsuite
+https://www.upload-4ever.com/akhai2shy4eu
+
+## TASK
+
+
+
+
+[9:43 AM, 12/1/2022] outofmemory: ok
+[9:43 AM, 12/1/2022] outofmemory: will test it
+[9:44 AM, 12/1/2022] outofmemory: can you play force the website to use only HTTPS?
+[9:44 AM, 12/1/2022] outofmemory: or redirect any HTTP to HTTPS
