@@ -53,19 +53,24 @@
 		<!-- <b-modal v-model="modalShow">
 			<div v-html="widget"></div>
 		</b-modal> -->
-		<div v-if ="widget" class="overlay">
-			<!-- <h1>Result from paymentwall</h1> -->
+		<!-- <div v-if ="widget" class="overlay">
 			<div class="payment-widget">
 				<header id="__BVID__563___BV_modal_header_" class="modal-header">
 					<h5 id="__BVID__563___BV_modal_title_" class="modal-title"></h5>
 					<button @click="closeWidget" type="button" aria-label="Close" class="close me-button">×</button>
 				</header>
-				<!-- <a class="close-modal" @click="$store.commit('closeModal')"></a> -->
-
-				<div v-html="widget" class="pt-5"></div>
 			</div>
-		</div>
-		
+		</div> -->
+		<!-- <div v-html="widget" class="pt-5"></div>
+		<object :data="widget">
+
+		</object> -->
+		<!-- <iframe sandbox="allow-same-origin allow-forms allow-scripts">{{widget}}</iframe> -->
+		<!-- <iframe id="iframe" width="572px" scrolling="auto" height="335px" 
+        frameborder="1" src="http://XXXX.com/iframe-page"
+        style="border: 0px none #ffffff;" name="national-campaign" 
+        marginheight="0px" marginwidth="0px">
+</iframe> -->
 	</div>
 </template>
 <script>
@@ -142,29 +147,45 @@
 				console.log('payNow')
 				if (this.selectedPM == 4) {
 					console.log('paymentwall')
-						let data = {}
-						this.$api.request.getPaymentwallWidget(data, (res => {
-							if (res.status == 200) {
-								console.log(res.data)
-								this.modalShow = true
-								this.widget = res.data.widget
-							} else {
-								this.$toast.error('DB error.')
-							}
-								// if (res.data.user) {
-								// 	this.$toast.show(`Successfully registered the username "${this.username}".`)
-								// 	this.$store.dispatch('account/setAccount', res.data.user)
-								// 	this.$store.commit('closeModal')
-								// } else if (res.data.message) {
-								// 	this.$toast.error(res.data.message)
-								// }
-						}), err =>{
-							this.$toast.error('Server is disconnected.')
-							console.log(err)
-						})
-					// let res = await axios.get('https://api.paymentwall.com/api/ps/?key=8c8962878af4e733f1a9e4b3e72a9b36&uid=848ea11edaa631a5cc37c6ed388c4041&widget=p1_1')
-					// this.widget = res.data
-					// console.log(res)
+					let data = {}
+					this.$api.request.getPaymentwallWidget(data, (res => {
+						// if (res.status. == 200) {
+						if (res.data.uri) {
+						
+							// console.log(res.data)
+							// // this.modalShow = true
+							// this.widget = res.data.widget
+							window.open(res.data.uri, 'Dynamic Popup', "height=950,width=800,status=yes,toolbar=no,menubar=no,location=no,titlebar=no")
+						} else {
+							this.$toast.error('Server error.')
+						}
+							// if (res.data.user) {
+							// 	this.$toast.show(`Successfully registered the username "${this.username}".`)
+							// 	this.$store.dispatch('account/setAccount', res.data.user)
+							// 	this.$store.commit('closeModal')
+							// } else if (res.data.message) {
+							// 	this.$toast.error(res.data.message)
+							// }
+					}), err =>{
+						this.$toast.error('Server is disconnected.')
+						console.log(err)
+					})
+// 					var str =`<!DOCTYPE html>
+// <html>
+// <body>
+
+// <h1>My First Heading</h1>
+// <p>My first paragraph.</p>
+
+// </body>
+// </html>`
+				// let res = await axios.get('https://api.paymentwall.com/api/ps/?key=8c8962878af4e733f1a9e4b3e72a9b36&uid=mario12&widget=p1_1&sign_version=3&email=agetokens5555%40gmail.com&sign=b2c4bcae9fe3652152eaba32e4e56909ff8bdf92b3189cb6116755324923b30d')
+				// // this.widget = res.data
+				// // console.log(this.widget)
+				// window.open('https://api.paymentwall.com/api/ps/?key=8c8962878af4e733f1a9e4b3e72a9b36&uid=848ea11edaa631a5cc37c6ed388c4041&widget=p1_1', 'Dynamic Popup', "height=950,width=800,status=yes,toolbar=no,menubar=no,location=no,titlebar=no")
+				// var newWindow = window.open(res.data, 'Dynamic Popup', "height=950,width=800,status=yes,toolbar=no,menubar=no,location=no,titlebar=no")
+				// newWindow.document.write(res.data);
+				// newWindow.document.close();
 				}
 				return
 				var payment = new UnitPay();
