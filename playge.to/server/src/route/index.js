@@ -5,6 +5,7 @@ const UserRoute = require('./user.route')
 const DownloadRoute = require('./download.route')
 const ItemRoute = require('./item.route')
 const CategoryRoute = require('./category.route')
+const PaymentRoute = require('./payment.route')
 
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -39,6 +40,7 @@ router.use('/user', UserRoute)
 router.use('/download', DownloadRoute)
 router.use('/item', ItemRoute)
 router.use('/category', CategoryRoute)
+router.use('/payment', PaymentRoute)
 
 
 

@@ -50,9 +50,28 @@
 				</div>
 			</div>
 		</div>
+		<!-- <b-modal v-model="modalShow">
+			<div v-html="widget"></div>
+		</b-modal> -->
+		<div v-if ="widget" class="overlay">
+			<!-- <h1>Result from paymentwall</h1> -->
+			<div class="payment-widget">
+				<header id="__BVID__563___BV_modal_header_" class="modal-header">
+					<h5 id="__BVID__563___BV_modal_title_" class="modal-title"></h5>
+					<button @click="closeWidget" type="button" aria-label="Close" class="close me-button">×</button>
+				</header>
+				<!-- <a class="close-modal" @click="$store.commit('closeModal')"></a> -->
+
+				<div v-html="widget" class="pt-5"></div>
+			</div>
+		</div>
+		
 	</div>
 </template>
 <script>
+	import axios from 'axios'
+	// import paymentwall from 'paymentwall';
+
 	export default {
 		head() {
 			return {
@@ -91,7 +110,10 @@
 				selectedPM: 0,
 				paymentTitle: '',
 				paymentPlan: 0,
-				paymentTotal: 0
+				paymentTotal: 0,
+				// FOR WIDGET
+				widget: '',
+				modalShow: false
 			}
 		},
 		created(){
@@ -113,7 +135,37 @@
 				this.paymentPlan = this.plans[this.selectedPl].coin
 				this.paymentTotal = this.plans[this.selectedPl].price
 			},
-			payNow() {
+			closeWidget() {
+				this.widget = ''
+			},
+			async payNow() {
+				console.log('payNow')
+				if (this.selectedPM == 4) {
+					console.log('paymentwall')
+						let data = {}
+						this.$api.request.getPaymentwallWidget(data, (res => {
+							if (res.status == 200) {
+								console.log(res.data)
+								this.modalShow = true
+								this.widget = res.data.widget
+							} else {
+								this.$toast.error('DB error.')
+							}
+								// if (res.data.user) {
+								// 	this.$toast.show(`Successfully registered the username "${this.username}".`)
+								// 	this.$store.dispatch('account/setAccount', res.data.user)
+								// 	this.$store.commit('closeModal')
+								// } else if (res.data.message) {
+								// 	this.$toast.error(res.data.message)
+								// }
+						}), err =>{
+							this.$toast.error('Server is disconnected.')
+							console.log(err)
+						})
+					// let res = await axios.get('https://api.paymentwall.com/api/ps/?key=8c8962878af4e733f1a9e4b3e72a9b36&uid=848ea11edaa631a5cc37c6ed388c4041&widget=p1_1')
+					// this.widget = res.data
+					// console.log(res)
+				}
 				return
 				var payment = new UnitPay();
 				payment.createWidget({
@@ -139,3 +191,22 @@
 		}
 	}
 </script>
+<style lang="scss">
+	.payment-widget {
+		opacity: 1;
+		pointer-events: inherit;
+		transition: 0.35s ease-in-out;
+		max-height: 100vh;
+		overflow-y: auto;
+		// padding: 30px;
+		// width: 100%;
+		max-width: 820px;
+		background-color: #fff;
+		.me-button {
+			width: 0px;
+			margin-right: 15px;
+			font-size: larger;
+			color: #000!important;
+		}
+	}
+</style>

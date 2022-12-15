@@ -32,4 +32,7 @@ export default () => ({
     getItemList(data, cb, error){apiCall('/api/v1/item/getItemList', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
     doBuyItem(data, cb, error){apiCall('/api/v1/item/doBuyItem', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
 
+    getPaymentwallWidget(data, cb, error){apiCall('/api/v1/payment/getPaymentwallWidget', 'POST', '', data, cb, error)},
+
+
 })
