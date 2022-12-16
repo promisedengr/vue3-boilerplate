@@ -72,6 +72,8 @@ async function checkPaymentwallTransaction(req, res, next) {
                         transaction.date = new Date()
                         transaction.state = state
                         transaction.ref = req.query['ref']
+                        transaction.coin = req.query['currency']
+
                         Transaction.create(transaction, (err, result) => {
                             console.log('The transaction is made')
                         })
@@ -86,8 +88,23 @@ async function checkPaymentwallTransaction(req, res, next) {
         res.send(pingback.getErrorSummary())
     }
 }
+async function getAccountCoinPurchases (req, res, next){
+    try {
+        console.log('getAccountCoinPurchases')
+        Transaction.findByUsername(req.user.name, (err, result) => {
+            console.log(result)
+            if (res)
+                res.json({transactions : result})
+            else
+                res.json({message: 'no purchases'})
 
+        })
+    } catch (error) {
+        console.log('api/controller/payment.controller/getAccountCoinPurchases' + error)
+    }
+}
 module.exports = {
     getPaymentwallWidget,
     checkPaymentwallTransaction,
+    getAccountCoinPurchases
   }

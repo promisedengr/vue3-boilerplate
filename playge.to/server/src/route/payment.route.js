@@ -7,6 +7,9 @@ const PaymentCtrl = require('../controller/payment.controller')
 
 router.route('/getPaymentwallWidget').post(passport.authenticate('jwt', {session: false}), PaymentCtrl.getPaymentwallWidget)
 router.route('/checkPaymentwallTransaction').get(PaymentCtrl.checkPaymentwallTransaction)
+router.route('/getAccountCoinPurchases').post(passport.authenticate('jwt', {session: false}), PaymentCtrl.getAccountCoinPurchases)
+
+
 // router.route('/getNews').post(GameCtrl.getNews)
 // router.route('/getTerms').post(GameCtrl.getTerms)
 // router.route('/getPrivacy').post(GameCtrl.getPrivacy)

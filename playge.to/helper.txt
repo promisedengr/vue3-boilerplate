@@ -10,7 +10,7 @@ ssh root@137.184.195.2
 webuser
 1bf9@43#0b075f7cA
 
-
+Username,date,charged Coin and maybe refrence ID
 
 
 ============ dev server
