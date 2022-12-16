@@ -4,6 +4,7 @@ const Transaction = function (transaction) {
     this.type = transaction.type
     this.date = transaction.date
     this.state = transaction.state // 0: nothing 1: important 2: event
+    this.ref = transaction.ref
 }
 Transaction.create = (newTransaction, result) => {
     sql.query("INSERT INTO transactions SET ?", newTransaction, (err, res) => {
