@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 
 const User = require("../model/user.model");
 const Code = require('../model/code.model')
+const DBConfig = require('../model/config.model')
+
 const ItemMallHistory = require('../model/item_mall_histories.model')
 const config = require('../config/jwt.config');
 
@@ -25,67 +27,77 @@ async function sample (req, res, next){
 }
 async function userSignUp (req, res, next){
     try {
+        console.log('connected to userSignUp')
         console.log(req.body)
-        User.findByName(req.body.username, (err, data) => {
-            if (err == 1) { // can create the user with the username
-                User.findByEmail(req.body.email, (err, data) => {
-                    if (err == 1) {
-                        User.findByPhoneNumber(req.body.phoneNumber, (err, data) => {
-                            if (err == 1) {
-                                Code.findBySender(req.body.email, (err, email) => {
-                                    if (email) {
-                                        if (email.code == req.body.emailCode) {
-                                            Code.findBySender(req.body.phoneNumber, (err, phoneNumber) => {
-                                                if (phoneNumber) {
-                                                    if (phoneNumber.code == req.body.smsCode) {
-                                                        // creation of user
-                                                        var user_ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress
-                                                        const user = new User({
-                                                            name: req.body.username,
-                                                            user_ip: user_ip,
-                                                            password: md5(req.body.password),
-                                                            email: req.body.email,
-                                                            phoneNumber: req.body.phoneNumber,
-                                                            coin: 0,
-                                                            netType: req.body.netType
-                                                        });
-                                                        User.create(user, async (err, user) => {
-                                                            if (user) {
-                                                                await mssql._saveUserInfo(user);
-                                                                res.send({user: user});
-                                                            } else
-                                                                res.send({message: 'Something went wrong.'})
-                                                        }); 
-                                                    } else
-                                                        res.send({message: 'The sms verification code does not match'})
+        DBConfig.getAll( (err, data) => {
+            if (data) {
+                if ((req.body.netType == 0 && data[0].global == 0) || (req.body.netType == 1 && data[0].sea == 0)) {
+                    User.findByName(req.body.username, (err, data) => {
+                        if (err == 1) { // can create the user with the username
+                            User.findByEmail(req.body.email, (err, data) => {
+                                if (err == 1) {
+                                    User.findByPhoneNumber(req.body.phoneNumber, (err, data) => {
+                                        if (err == 1) {
+                                            Code.findBySender(req.body.email, (err, email) => {
+                                                if (email) {
+                                                    if (email.code == req.body.emailCode) {
+                                                        Code.findBySender(req.body.phoneNumber, (err, phoneNumber) => {
+                                                            if (phoneNumber) {
+                                                                if (phoneNumber.code == req.body.smsCode) {
+                                                                    // creation of user
+                                                                    var user_ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || req.socket.remoteAddress
+                                                                    const user = new User({
+                                                                        name: req.body.username,
+                                                                        user_ip: user_ip,
+                                                                        password: md5(req.body.password),
+                                                                        email: req.body.email,
+                                                                        phoneNumber: req.body.phoneNumber,
+                                                                        coin: 0,
+                                                                        netType: req.body.netType
+                                                                    });
+                                                                    User.create(user, async (err, user) => {
+                                                                        if (user) {
+                                                                            await mssql._saveUserInfo(user);
+                                                                            res.send({user: user});
+                                                                        } else
+                                                                            res.send({message: 'Something went wrong.'})
+                                                                    }); 
+                                                                } else
+                                                                    res.send({message: 'The sms verification code does not match'})
+                                                            } else {
+                                                                if (err == 1) {
+                                                                    res.send({message: 'Your phone number does not match.'})
+                                                                } else {
+                                                                    res.send({message: 'Something went wrong.'})
+                                                                }
+                                                            }
+                                                        })
+                                                    } else  
+                                                        res.send({message: 'The email verification code does not match'})
                                                 } else {
                                                     if (err == 1) {
-                                                        res.send({message: 'Your phone number does not match.'})
+                                                        res.send({message: 'Email verification code does not match'})
                                                     } else {
                                                         res.send({message: 'Something went wrong.'})
                                                     }
                                                 }
                                             })
-                                        } else  
-                                            res.send({message: 'The email verification code does not match'})
-                                    } else {
-                                        if (err == 1) {
-                                            res.send({message: 'Email verification code does not match'})
-                                        } else {
-                                            res.send({message: 'Something went wrong.'})
+                                        } else if (data) {
+                                            res.send({message: `The user with the phone number ${req.body.phoneNumber} already exists.`})
                                         }
-                                    }
-                                })
-                            } else if (data) {
-                                res.send({message: `The user with the phone number ${req.body.phoneNumber} already exists.`})
-                            }
-                        })
-                    } else if (data) {
-                        res.send({message: `The user with the phone email ${req.body.email} already exists.`})
-                    }
-                })       
-            } else if (data) {
-                res.send({message: `The user with the username ${req.body.username} already exists.`})
+                                    })
+                                } else if (data) {
+                                    res.send({message: `The user with the phone email ${req.body.email} already exists.`})
+                                }
+                            })       
+                        } else if (data) {
+                            res.send({message: `The user with the username ${req.body.username} already exists.`})
+                        }
+                    });
+                } else
+                    res.send({message: 'You are doing violent action.'})
+            } else {
+                res.status(404).send()
             }
         });
     } catch (error) {
@@ -96,20 +108,27 @@ async function userSignIn (req, res, next){
     try {
         console.log('connected to userSignIn')
         console.log(req.body)
-        User.findByNameAndNetType(req.body, (err, user) => {
-            if (err == 1) {
-                res.send({type: 2}) // a user not found
-            } else {
-                if (user.password == md5(req.body.password)){
-                    let payload = {}
-                    payload.email = user.email
-                    payload.id = user.id
-                    let token = jwt.sign(payload, config.secret, {expiresIn: config.expires});
-                    console.log(token)
-                    res.send({user: user,  type: 1, token: token});
-                } else {
-                    res.send({type: 3}) // wrong password
-                }
+        DBConfig.getAll( (err, data) => {
+            if (data) {
+                if ((req.body.netType == 0 && data[0].global == 0) || (req.body.netType == 1 && data[0].sea == 0)) {
+                    User.findByNameAndNetType(req.body, (err, user) => {
+                        if (err == 1) {
+                            res.send({type: 2}) // a user not found
+                        } else {
+                            if (user.password == md5(req.body.password)){
+                                let payload = {}
+                                payload.email = user.email
+                                payload.id = user.id
+                                let token = jwt.sign(payload, config.secret, {expiresIn: config.expires});
+                                console.log(token)
+                                res.send({user: user,  type: 1, token: token});
+                            } else {
+                                res.send({type: 3}) // wrong password
+                            }
+                        }
+                    });
+                } else
+                    res.send({message: 'You are doing violent action.'})
             }
         });
     } catch (error) {

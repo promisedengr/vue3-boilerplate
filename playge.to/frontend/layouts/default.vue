@@ -146,6 +146,7 @@
 						} else {
 							this.$store.commit('SET_STATUS', 0)
 						}
+						this.$store.commit('SET_CONFIG', res.data.config)
 					} else {
 						localStorage.clear()
 					}

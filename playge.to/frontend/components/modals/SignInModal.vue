@@ -31,13 +31,11 @@
 						<i class="form-icon icon-question"></i>
 					</div>
 					<select v-model="netType">
-						<option value="0">Global</option>
-						<option value="1">Sea</option>
+						<option v-if="$store.state.config.global == 0" value="0">Global</option>
+						<option v-if="$store.state.config.sea == 0" value="1">Sea</option>
 					</select>
 				</div>
 			</div>
-			
-			
 			<div class="formGroup-button">
 				<button class="button-big" @click="userSignIn()">Sign In</button>
 			</div>
@@ -58,9 +56,15 @@
 				netType: 0
 			}
 		},
+		mounted() {
+			if (this.$store.state.config.global == 1) {
+				this.netType = 1
+			} else if (this.$store.state.config.sea == 1)
+				this.netType = 0
+		},
 		methods: {
 			clickRegisterNow() {
-                if (this.$store.state.status == 2) {
+                if (this.$store.state.config.registration != 0) {
 					this.$toast.error('The registration is disabled')
                     return
                 }

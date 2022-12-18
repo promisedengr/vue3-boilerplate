@@ -2,7 +2,13 @@ const getDefaultState = () => {
   return {
     isSidebarToggled: false,
     isModal: false,
-    status: -1 // 0: normal, 1: under maintenance, 2: registration disabled
+    status: -1, // 0: normal, 1: under maintenance, 2: registration disabled
+    config: {
+      maintenance: 0,
+      registration: 0,
+      sea: 0,
+      global: 0
+    }
   }
 };
 // const state = getDefaultState()
@@ -13,8 +19,13 @@ const state = () => ({
   modalType: '',
   isMobileView: true,
   device: {},
-  status:  -1 // 0: normal, 1: under maintenance, 2: registration disabled
-
+  status:  -1, // 0: normal, 1: under maintenance, 2: registration disabled
+  config: {
+    maintenance: 0,
+    registration: 0,
+    sea: 0,
+    global: 0
+  }
 });
 
 const mutations = {
@@ -52,8 +63,13 @@ const mutations = {
     state.modalType = value
   },
   SET_STATUS(state, status) {
-    console.log(status)
     state.status = status
+  },
+  SET_CONFIG(state, config) {
+    state.config.maintenance = config.maintenance
+    state.config.registration = config.registration
+    state.config.sea = config.sea
+    state.config.global = config.global
   }
 };
 const actions = {

@@ -37,10 +37,20 @@ https://www.upload-4ever.com/akhai2shy4eu
 
 ## TASK
 
+Zax К, [12/17/2022 3:13 AM]
+if value of global in config = 1
 
+Zax К, [12/17/2022 3:13 AM]
+hide element of global
 
+Zax К, [12/17/2022 3:13 AM]
+and leave only SEA
 
-[9:43 AM, 12/1/2022] outofmemory: ok
-[9:43 AM, 12/1/2022] outofmemory: will test it
-[9:44 AM, 12/1/2022] outofmemory: can you play force the website to use only HTTPS?
-[9:44 AM, 12/1/2022] outofmemory: or redirect any HTTP to HTTPS
+Zax К, [12/17/2022 3:13 AM]
+need to do that for signup and sign in
+
+Zax К, [12/17/2022 3:13 AM]
+can we do that?
+
+Zax К, [12/17/2022 3:13 AM]
+need do for global and sea so in future if i want to disable anyone of them
