@@ -15,5 +15,9 @@ router.route('/getUserData').post(passport.authenticate('jwt', {session: false})
 router.route('/savePassword').post(passport.authenticate('jwt', {session: false}), UserCtrl.savePassword)
 router.route('/getNamePlayer').post(passport.authenticate('jwt', {session: false}), UserCtrl.getNamePlayer)
 router.route('/getAccountItemPurchases').post(passport.authenticate('jwt', {session: false}), UserCtrl.getAccountItemPurchases)
+router.route('/getDeletedItemHistory').post(passport.authenticate('jwt', {session: false}), UserCtrl.getDeletedItemHistory)
+router.route('/getTradeHistory').post(passport.authenticate('jwt', {session: false}), UserCtrl.getTradeHistory)
+
+
 
 module.exports = router

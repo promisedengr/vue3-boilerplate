@@ -53,7 +53,7 @@
 		<form v-if="donations.length > 0" style="display: none;" name="payssion_hosted_payment" action="https://payssion.com/checkout/41ddcc2ee2247424" method="post"> 
 			<input type="hidden" name="api_sig" v-model="sig"> 
 			<input type="hidden" name="order_id" value="123"> 
-			<input type="hidden" name="payer_email" :value="$store.state.account.email"> 
+			<input type="hidden" name="payer_email" :value="$store.state.account.email">
 			<input type="hidden" name="description" value="Andromida(SEA) Coins"> 
 			<input type="hidden" name="amount" :value="donations[this.selectedPl].price"> 
 			<input type="hidden" name="currency" value="USD"> 

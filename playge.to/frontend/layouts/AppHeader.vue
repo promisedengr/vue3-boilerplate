@@ -1,19 +1,19 @@
 <template>
   <header class="header" :class="scrollStyle ? 'header-fixed': ''">
 			<div class="header-wrapper flex-s-c ">
-				<div class="burger btn-drop" @click="mobileNav = !mobileNav" :class="mobileNav? 'active': ''">
+				<div class="burger btn-drop" @click="setMobileTab" :class="$store.state.mobileTab? 'active': ''">
 					<span></span>
 					<span></span>
 					<span></span>
 				</div>
-				<nav class="nav" :class="mobileNav? 'active': ''" >
+				<nav class="nav" :class="$store.state.mobileTab? 'active': ''" >
 					<ul class="menu flex-c">
-						<li :class="$route.path == '/' ? 'active': ''"><a @click="$router.push('/')">Home</a></li>
-						<li v-if="$store.state.account.name" :class="$route.path == '/donate' ? 'active': ''"><a @click="$router.push('/donate')">Donate</a></li>
-						<li :class="$route.path == '/download' ? 'active': ''"><a @click="$router.push('/download')">Downloads</a></li>
-						<li :class="$route.path == '/rotation' ? 'active': ''"><a @click="$router.push('/rotation')">Rotation</a></li>
-						<li v-if="$store.state.account.name" :class="$route.path == '/item-shop' ? 'active': ''"><a @click="$router.push('/item-shop')">Itemshop</a></li>
-						<li :class="$route.path == '/news' ? 'active': ''"><a target="_blank" rel="noopener noreferrer" href="https://granado-espada.to/" @click="$router.push('/news')">Community</a></li>
+						<li :class="$route.path == '/' ? 'active': ''"><a @click="goToHome()">Home</a></li>
+						<li v-if="$store.state.account.name" :class="$route.path == '/donate' ? 'active': ''"><a @click="goToDonation()">Donate</a></li>
+						<li :class="$route.path == '/download' ? 'active': ''"><a @click="goToDownload()">Downloads</a></li>
+						<li :class="$route.path == '/rotation' ? 'active': ''"><a @click="goToRotation()">Rotation</a></li>
+						<li v-if="$store.state.account.name" :class="$route.path == '/item-shop' ? 'active': ''"><a @click="goToItemShop()">Itemshop</a></li>
+						<li :class="$route.path == '/news' ? 'active': ''"><a target="_blank" rel="noopener noreferrer" href="https://granado-espada.to/" @click="goToNews()">Community</a></li>
 					</ul>
 				</nav>
 				<div class="r-block">
@@ -22,10 +22,10 @@
 							EN <img src="@/assets/images/icons/icon-en.jpg" alt="En">
 						</div>
 						<ul class="langBlock-drop" :class="dropDown ? 'active': ''">
-							<li><a href="#"><img src="@/assets/images/icons/icon-german.jpg" alt="G"> German</a></li>
-							<li><a href="#"><img src="@/assets/images/icons/icon-poland.jpg" alt="P"> Polish</a></li>
-							<li><a href="#"><img src="@/assets/images/icons/icon-french.jpg" alt="F"> French</a></li>
-							<li><a href="#"><img src="@/assets/images/icons/icon-spanish.jpg" alt="S"> Spanish</a></li>
+							<li><a><img src="@/assets/images/icons/icon-german.jpg" alt="G"> German</a></li>
+							<li><a><img src="@/assets/images/icons/icon-poland.jpg" alt="P"> Polish</a></li>
+							<li><a><img src="@/assets/images/icons/icon-french.jpg" alt="F"> French</a></li>
+							<li><a><img src="@/assets/images/icons/icon-spanish.jpg" alt="S"> Spanish</a></li>
 						</ul>
 					</div>
 					<div class="cp btn-drop" data-class="userPanel" @click="setSideBar()"></div>
@@ -54,6 +54,34 @@
 			window.removeEventListener('scroll', this.handleScroll);
 		},
 		methods: {
+      
+      goToHome() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+        this.$router.push('/')
+      },
+      goToDonation() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+        this.$router.push('/donate')
+      },
+      goToDownload() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+        this.$router.push('/download')
+      },
+      goToRotation() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+        this.$router.push('/rotation')
+      },
+      goToItemShop() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+        this.$router.push('/item-shop')
+      },
+      goToNews() {
+        this.$store.commit("SET_MOBILE_TAB", 1)
+      },
+      setMobileTab() {
+        console.log(this.$store.state.mobileTab)
+        this.$store.commit("SET_MOBILE_TAB", 0)
+      },
       setSideBar() {
         this.$store.commit("setSidebarToggle")
       },

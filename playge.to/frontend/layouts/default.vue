@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		<div v-else-if="$store.state.status > -1" class="wrapper">
-			<AppHeader/>
+			<AppHeader v-click-outside="externalClick"/>
 			<div class="topBlock">
 				<div class="highlight">
 					<div class="highlight-3"></div>
@@ -21,14 +21,14 @@
 				<div class="circle circle1"></div>
 				<div class="circle circle2"></div>
 				<div class="logo">
-					<a href="/"><img src="@/assets/images/logo.png" alt="Logo"></a>
+					<a><img src="@/assets/images/logo.png" alt="Logo"></a>
 				</div>
 			</div>
 			<main class="main flex-s">
 				<div class="main-content">
 					<div class="upper">
 						<div class="upperBlock flex-c-c">
-							<a target="_blank" href="https://ge.sytes.net/" class="upper-block flex-c">
+							<a target="_blank" href="https://agedatabase.com/" class="upper-block flex-c">
 								<div class="upper-block_img">
 									<img src="@/assets/images/icons/icon-book.png" alt="">
 								</div>
@@ -68,7 +68,7 @@
 			<footer class="footer">
 				<div class="footer-container flex">
 					<div class="footer-info">
-						<a href="/"><img src="@/assets/images/logo-footer.png" alt=""></a>
+						<a><img src="@/assets/images/logo-footer.png" alt=""></a>
 						<div class="copyright">
 							Copyright @ 2022 playge.to All rights reserved.<br>
 							All other trademarks are the property of their respective owners.
@@ -134,6 +134,16 @@
 			}
 		},
 		methods: {
+			externalClick (event) {
+        
+				if (this.$store.state.mobileTab){
+					console.log(this.$store.state.mobileTab)
+					this.$store.commit("SET_MOBILE_TAB", 1)
+				}
+
+				// setTimeout(() => {
+				// }, "500")
+			},
 			checkServerStatus() {
 				let data = {}
 				this.$api.request.checkServerStatus(data, (res => {

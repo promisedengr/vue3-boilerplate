@@ -24,6 +24,8 @@ export default () => ({
     savePassword(data, cb, error){apiCall('/api/v1/user/savePassword', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
     getNamePlayer(data, cb, error){apiCall('/api/v1/user/getNamePlayer', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
     getAccountItemPurchases(data, cb, error){apiCall('/api/v1/user/getAccountItemPurchases', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
+    getDeletedItemHistory(data, cb, error){apiCall('/api/v1/user/getDeletedItemHistory', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
+    getTradeHistory(data, cb, error){apiCall('/api/v1/user/getTradeHistory', 'POST', window.sessionStorage.getItem("token"), data, cb, error)},
 
     getDownloads(data, cb, error){apiCall('/api/v1/download/getDownloads', 'POST', '', data, cb, error)},
 

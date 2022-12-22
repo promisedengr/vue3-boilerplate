@@ -322,6 +322,25 @@ async function recoverNow (req, res, next){
         console.log('api/controller/user.controller/recoverNow' + error)
     }
 }
+async function getDeletedItemHistory(req, res, next) {
+    try {
+        console.log('connected to getDeletedItemHistory')
+        let deleted_list = await mssql.getDeletedItemHistory(req.user)
+        res.json({deleted_list: deleted_list})
+    } catch (error) {
+        console.log('api/controller/user.controller/getDeletedItemHistory' + error)
+    }
+}
+async function getTradeHistory(req, res, next) {
+    try {
+        console.log('connected to getTradeHistory')
+        let exchange_list = await mssql.getTradeHistory(req.user)
+        res.json({exchange_list: exchange_list})
+    } catch (error) {
+        console.log('api/controller/user.controller/getTradeHistory' + error)
+    }
+}
+
 module.exports = {
     userSignUp,
     userSignIn,
@@ -331,5 +350,7 @@ module.exports = {
     getUserData,
     getNamePlayer,
     getAccountItemPurchases,
-    recoverNow
+    recoverNow,
+    getDeletedItemHistory,
+    getTradeHistory
 }

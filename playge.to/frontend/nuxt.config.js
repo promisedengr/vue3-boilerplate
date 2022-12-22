@@ -41,6 +41,7 @@ export default {
     { src: "@/plugins/device.server.js",},
     { src: '@/plugins/splide.js', mode: 'client'},
     { src: '~plugins/v-calendar.js', ssr: false },
+    { src: "@/plugins/vClickOutside", ssr: false }
   ],
   script: [
     { src: 'https://widget.unitpay.ru/unitpay.js', ssr: true}

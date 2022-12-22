@@ -6,7 +6,7 @@
                 User Panel
             </div>
             <div class="userPanel-info">
-                Please <a href="">log In</a> to use the entire website.
+                Please <a>log In</a> to use the entire website.
             </div>
             <div class="userPanel-enter">
                 <div class="userPanel-button">
@@ -46,8 +46,10 @@
             <ul class="cp-menu">
                 <li><a @click="$router.push('/item-shop')" class="button">Itemshop</a></li>
                 <li><a @click="$router.push('/donate')" class="button">Donate</a></li>
-                <li><a @click="$router.push('/special-offer')" class="button">Special Offer</a></li>
+                <li><a @click="$router.push('/game-logs')" class="button">Game Logs</a></li>
+
                 <li><a @click="$router.push('/account')" class="button">Account</a></li>
+                
                 <!-- <li><a @click="$router.push('/character')" class="button">Characters</a></li>
                 <li><a class="button">Delete Account</a></li>
                 <li><a class="button">My Tickets</a></li> -->

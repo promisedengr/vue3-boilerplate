@@ -174,7 +174,35 @@ async function _doChangeFamilyName (username, commander_id, newName, netType){
     console.log('util/mssql/_doChangeFamilyName' + error)
   }
 }
-
+async function getDeletedItemHistory (user){
+  try {
+    console.log(user)
+    var connection = await setConnection(user.netType)
+    var request = new sql.Request(connection);
+    var result =  await request.query(`select top 50 item_name,ITEM_COUNT,ZONE_NAME,MEMBER_ID,COMMANDER_NAME,LOG_DATE from GE_LOG.DBO.ITEM_DELETE WHERE MEMBER_ID='lamktm202' order by LOG_DATE desc`)
+    connection.close()
+    return result.recordset
+      // console.log('connected to sample in mssql')
+      // res.json({list: 'okay'})
+  } catch (error) {
+      console.log('util/mssql/sample' + error)
+  }
+}
+async function getTradeHistory (user){
+  try {
+    console.log(user)
+    var connection = await setConnection(user.netType)
+    var request = new sql.Request(connection);
+    var result =  await request.query(`select top 50 FROM_COMM_NAME,TO_COMM_NAME,ITEM_NAME,ITEM_ID,ITEM_COUNT,LOG_DATE from GE_LOG.DBO.ITEM_EXCHANGE where MEMBER_ID='Bobert92x' or RECEIVER_MEMBER_ID='Bobert92x'  order by LOG_DATE desc`)
+    connection.close()
+    console.log(result.recordset)
+    return result.recordset
+      // console.log('connected to sample in mssql')
+      // res.json({list: 'okay'})
+  } catch (error) {
+      console.log('util/mssql/sample' + error)
+  }
+}
 module.exports = {
   _getOnlinePlayerCount,
   _saveUserInfo,
@@ -183,5 +211,7 @@ module.exports = {
   _getNamePlayer,
   _getRotations,
   _doChangeFamilyName,
+  getDeletedItemHistory,
+  getTradeHistory
 }
 

@@ -19,16 +19,11 @@
 						Menu
 					</div>
 					<ul class="cp-menu cp-menu-account">
-						<!-- <NuxtLink v-for = "(c, index) in categories" :to="c.url" :key ="index" class="button" v-if="c.url !='/account?tab=change-family-name'">
-							{{c.title}}
-						</NuxtLink> -->
 						<a @click="$router.push('/account')" :class="$route.query.tab == undefined? 'active': ''" class="button">Information</a>
 						<a @click="$router.push('/account?tab=item-purchase')" :class="$route.query.tab == 'item-purchase'? 'active': ''" class="button">Item Purchases</a>
 						<a @click="$router.push('/account?tab=coin-purchase')" :class="$route.query.tab == 'coin-purchase'? 'active': ''" class="button">Coin Purchases</a>
 						<a v-if="namePlayer != 'No Family Created'" @click="$router.push('/account?tab=change-family-name')" :class="$route.query.tab == 'change-family-name'? 'active': ''" class="button">Change Family Name</a>
 						<a @click="$router.push('/account?tab=change-password')" :class="$route.query.tab == 'change-password'? 'active': ''" class="button">Change Password</a>
-
-						
 					</ul>
 				</div>
 				<AccountInformationVue v-if = "$route.query.tab == undefined"/>

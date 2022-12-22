@@ -8318,6 +8318,11 @@
     "date-fns-tz" "^1.1.4"
     "lodash" "^4.17.21"
 
+"v-click-outside@^3.2.0":
+  "integrity" "sha512-QD0bDy38SHJXQBjgnllmkI/rbdiwmq9RC+/+pvrFjYJKTn8dtp7Penf9q1lLBta280fYG2q53mgLhQ+3l3z74w=="
+  "resolved" "https://registry.npmjs.org/v-click-outside/-/v-click-outside-3.2.0.tgz"
+  "version" "3.2.0"
+
 "vary@^1.1.2", "vary@~1.1.2":
   "integrity" "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
