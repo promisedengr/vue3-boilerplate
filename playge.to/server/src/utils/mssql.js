@@ -179,7 +179,8 @@ async function getDeletedItemHistory (user){
     console.log(user)
     var connection = await setConnection(user.netType)
     var request = new sql.Request(connection);
-    var result =  await request.query(`select top 50 item_name,ITEM_COUNT,ZONE_NAME,MEMBER_ID,COMMANDER_NAME,LOG_DATE from GE_LOG.DBO.ITEM_DELETE WHERE MEMBER_ID='lamktm202' order by LOG_DATE desc`)
+    console.log(`select top 50 item_name,ITEM_COUNT,ZONE_NAME,MEMBER_ID,COMMANDER_NAME,LOG_DATE from GE_LOG.DBO.ITEM_DELETE WHERE MEMBER_ID='${user.name}' order by LOG_DATE desc`)
+    var result =  await request.query(`select top 50 item_name,ITEM_COUNT,ZONE_NAME,MEMBER_ID,COMMANDER_NAME,LOG_DATE from GE_LOG.DBO.ITEM_DELETE WHERE MEMBER_ID='${user.name}' order by LOG_DATE desc`)
     connection.close()
     return result.recordset
       // console.log('connected to sample in mssql')
@@ -193,7 +194,8 @@ async function getTradeHistory (user){
     console.log(user)
     var connection = await setConnection(user.netType)
     var request = new sql.Request(connection);
-    var result =  await request.query(`select top 50 FROM_COMM_NAME,TO_COMM_NAME,ITEM_NAME,ITEM_ID,ITEM_COUNT,LOG_DATE from GE_LOG.DBO.ITEM_EXCHANGE where MEMBER_ID='Bobert92x' or RECEIVER_MEMBER_ID='Bobert92x'  order by LOG_DATE desc`)
+    console.log(`select top 50 FROM_COMM_NAME,TO_COMM_NAME,ITEM_NAME,ITEM_ID,ITEM_COUNT,LOG_DATE from GE_LOG.DBO.ITEM_EXCHANGE where MEMBER_ID='${user.name}' or RECEIVER_MEMBER_ID='${user.name}'  order by LOG_DATE desc`)
+    var result =  await request.query(`select top 50 FROM_COMM_NAME,TO_COMM_NAME,ITEM_NAME,ITEM_ID,ITEM_COUNT,LOG_DATE from GE_LOG.DBO.ITEM_EXCHANGE where MEMBER_ID='${user.name}' or RECEIVER_MEMBER_ID='${user.name}'  order by LOG_DATE desc`)
     connection.close()
     console.log(result.recordset)
     return result.recordset

@@ -1,32 +1,26 @@
 <template>
     <div class="content">
-         <div class="title-page">
-             <span>Game Logs</span>
+         <div class="title-page" style="display: flex; justify-content: center; align-items: center;">
+             <div>Game Logs</div>
+         </div>
+         <div class="">
+             <ul class="cp-menu cp-menu-account">
+                 <a @click="$router.push('/game-logs')" :class="$route.query.tab == undefined? 'active': ''" class="button">Deleted Items</a>
+                 <a @click="$router.push('/game-logs?tab=item-exchange')" :class="$route.query.tab == 'item-exchange'? 'active': ''" class="button">Item Exchanges</a>
+             </ul>
          </div>
          <div class="account">
-             <!-- <div class="accountTopInfo flex-c">
-                 <div class="accountTopInfo-img">
-                     <img src="@/assets/images/ava.png" alt="">
-                 </div>
-                 <div class="accountTopInfo-text">
-                     <p>Name player:</p>
-                     <span>{{namePlayer}}</span>
-                 </div>
-             </div> -->
              <div class="accountBlock flex">
-                 <div class="accountBlock-menu" style="width: 30%;">
+                 <!-- <div class="accountBlock-menu" style="width: 30%;"> -->
+                 <!-- <div class="accountBlock-menu">
                      <div class="accountBlock-title">
                          Menu
                      </div>
                      <ul class="cp-menu cp-menu-account">
                          <a @click="$router.push('/game-logs')" :class="$route.query.tab == undefined? 'active': ''" class="button">Deleted Items</a>
                          <a @click="$router.push('/game-logs?tab=item-exchange')" :class="$route.query.tab == 'item-exchange'? 'active': ''" class="button">Item Exchanges</a>
-                         <!-- <a @click="$router.push('/account?tab=item-purchase')" :class="$route.query.tab == 'item-purchase'? 'active': ''" class="button">Item Purchases</a>
-                         <a @click="$router.push('/account?tab=coin-purchase')" :class="$route.query.tab == 'coin-purchase'? 'active': ''" class="button">Coin Purchases</a>
-                         <a v-if="namePlayer != 'No Family Created'" @click="$router.push('/account?tab=change-family-name')" :class="$route.query.tab == 'change-family-name'? 'active': ''" class="button">Change Family Name</a>
-                         <a @click="$router.push('/account?tab=change-password')" :class="$route.query.tab == 'change-password'? 'active': ''" class="button">Change Password</a> -->
                      </ul>
-                 </div>
+                 </div> -->
                  <GameLogsItemDeletePage v-if = "$route.query.tab == undefined"/>
                  <ItemExchange v-else-if="$route.query.tab == 'item-exchange'"/>
                  <AccountCoinPurchaseVue v-else-if="$route.query.tab == 'coin-purchase'"/>

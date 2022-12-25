@@ -37,9 +37,7 @@ const mutations = {
     return (state.isRightPanelToggled = !state.isRightPanelToggled);
   },
   // sidebar toggle handler
-  setSidebarToggle(state) {
-    return (state.isSidebarToggled = !state.isSidebarToggled);
-  },
+ 
   // modal handler
   showModal(state) {
     state.isModal = true;
@@ -77,7 +75,16 @@ const mutations = {
       state.mobileTab = !state.mobileTab
     else
       state.mobileTab = false
-  }
+  },
+  SET_SIDE_BAR(state, index) {
+    if (index == 0)
+      state.isSidebarToggled = !state.isSidebarToggled
+    else if (index == 1)
+      state.isSidebarToggled = false
+    else
+      state.isSidebarToggled = true
+  },
+
 };
 const actions = {
   setModalType({commit}, role){

@@ -1,7 +1,7 @@
 <template>
     <aside v-if="$store.state.loading"></aside>
     <aside v-else class="sidebar">
-        <div v-if="!$store.state.account.name" class="userPanel" :class="$store.state.isSidebarToggled ? 'active': ''">
+        <div v-if="!$store.state.account.name"  class="userPanel" :class="$store.state.isSidebarToggled ? 'active': ''">
             <div class="userPanel-title">
                 User Panel
             </div>
@@ -114,6 +114,24 @@ import AppStatisticsVue from './AppStatistics.vue'
             console.log(localStorage)
         },
         methods: {
+            panelClick () {
+                console.log('fjeifjefjejfe')
+                    this.$store.commit("SET_SIDE_BAR", 2)
+
+                // var element = document.getElementsByClassName('userPanel')
+                // console.log(element[0].classList.contains('active'))
+
+                // if (element[0].classList.contains('active')){
+                //     // this.$store.commit("SET_SIDE_BAR", 0)
+                //     element[0].classList.remove('active');
+                // }
+                // console.log(element.classList.contains('active'))
+
+                // if (this.$store.state.isSidebarToggled){
+                //     this.$store.commit("SET_SIDE_BAR", 1)
+                // }
+
+            },
             clickSignUp() {
                 if (this.$store.state.status == 2) {
 					this.$toast.error('The registration is disabled')

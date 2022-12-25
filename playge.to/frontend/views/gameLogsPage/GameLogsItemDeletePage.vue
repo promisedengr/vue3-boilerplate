@@ -1,9 +1,10 @@
 <template>
-    <div class="accountBlock-ava" style="width: 70%;">
+    <!-- <div class="accountBlock-ava" style="width: 70%;"> -->
+    <div class="mt-5" style="width: 100%;">
         <div class="accountBlock-title">
             Deleted Item History
         </div>
-        <div v-if="purchases.length > 0" class="accountBlock-ava_box">
+        <div v-if="purchases.length > 0" class="log-table-box">
             <b-table class="table" :items="shows" :fields="fields" thead-class="purchase-table">
                 <template #cell(index)="data" class="kaf">
                     <label class="tr-col__center" style = "color: #fff;">
@@ -91,6 +92,10 @@
     }
 </script>
 <style lang="scss">
+
+    .log-table-box{
+
+    }
     .demo-center {
         position: absolute;
     top: 50%;

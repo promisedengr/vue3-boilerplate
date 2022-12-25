@@ -1,9 +1,9 @@
 <template>
-    <div class="accountBlock-ava" style="width: 70%;">
+    <div class="mt-5" style="width: 100%;">
         <div class="accountBlock-title">
             Item Exchange History
         </div>
-        <div v-if="purchases_b.length > 0" class="accountBlock-ava_box">
+        <div v-if="purchases_b.length > 0" class="accountBlock-ava_box" style="overflow-x: scroll;">
             <b-table class="table" :items="shows_b" :fields="fields_b" thead-class="purchase-table">
                 <template #cell(index)="data" class="kaf">
                     <label class="tr-col__center" style = "color: #fff;">

@@ -28,7 +28,7 @@
 							<li><a><img src="@/assets/images/icons/icon-spanish.jpg" alt="S"> Spanish</a></li>
 						</ul>
 					</div>
-					<div class="cp btn-drop" data-class="userPanel" @click="setSideBar()"></div>
+					<div class="cp btn-drop" style="z-index: 9999;" @click="setSideBar()"></div>
 				</div>
 			</div>
 		</header>
@@ -83,7 +83,14 @@
         this.$store.commit("SET_MOBILE_TAB", 0)
       },
       setSideBar() {
-        this.$store.commit("setSidebarToggle")
+        // var element = document.getElementsByClassName('userPanel')
+        //         console.log(element[0].classList.contains('active'))
+
+        //         if (!element[0].classList.contains('active')){
+        //             // this.$store.commit("SET_SIDE_BAR", 0)
+        //             element[0].classList.add('active');
+        //         }
+        this.$store.commit("SET_SIDE_BAR", 0)
       },
 			handleScroll(event){
 				if (window.scrollY >= 50)

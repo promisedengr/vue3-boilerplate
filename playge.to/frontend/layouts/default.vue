@@ -60,8 +60,6 @@
 					<Nuxt/>
 				</div>
 				<AppSideBar/>
-				
-				
 			</main>
 			
 			<Modal v-show="$store.state.isModal"/>
@@ -137,9 +135,18 @@
 			externalClick (event) {
         
 				if (this.$store.state.mobileTab){
-					console.log(this.$store.state.mobileTab)
 					this.$store.commit("SET_MOBILE_TAB", 1)
 				}
+				// if (this.$store.state.isSidebarToggled){
+				// 	this.$store.commit("SET_SIDE_BAR", 1)
+				// }
+				//                var element = document.getElementsByClassName('userPanel')
+                // console.log(element[0].classList.contains('active'))
+
+                // if (element[0].classList.contains('active')){
+                //     // this.$store.commit("SET_SIDE_BAR", 0)
+                //     element[0].classList.remove('active');
+                // }
 
 				// setTimeout(() => {
 				// }, "500")
