@@ -6,6 +6,7 @@ const getDefaultState = () => {
     phoneNumber: '',
     coin: 0,
     netType: 0,
+    paymentwall: 0,
     role: 10
   }
 };
@@ -18,6 +19,7 @@ const state = () => ({
   phoneNumber: '',
   coin: 0,
   netType: 0,
+  paymentwall: 0,
   role: 10
 });
 
@@ -37,6 +39,7 @@ const mutations = {
     state.email = account.email
     state.phoneNumber = account.phoneNumber
     state.coin = account.coin
+    state.paymentwall = account.paymentwall
     state.netType = account.netType
   },
   SET_ROLE: (state, role) => {

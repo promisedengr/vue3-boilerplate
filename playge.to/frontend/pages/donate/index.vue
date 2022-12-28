@@ -180,17 +180,24 @@
 					this.$refs.alipayForm.click()
 				} else if (this.selectedPM == 4) {
 					console.log('paymentwall')
-					let data = {}
-					this.$api.request.getPaymentwallWidget(data, (res => {
-						if (res.data.uri) {
-							window.open(res.data.uri, 'Dynamic Popup', "height=950,width=800,status=yes,toolbar=no,menubar=no,location=no,titlebar=no")
-						} else {
-							this.$toast.error('Server error.')
-						}
-					}), err =>{
-						this.$toast.error('Server is disconnected.')
-						console.log(err)
-					})
+					console.log(this.$store.state.config)
+					if (this.$store.state.config.paymentwall == 0 || this.$store.state.account.paymentwall == 1) {
+						let data = {}
+						this.$api.request.getPaymentwallWidget(data, (res => {
+							if (res.data.uri) {
+								window.open(res.data.uri, 'Dynamic Popup', "height=950,width=800,status=yes,toolbar=no,menubar=no,location=no,titlebar=no")
+							} else {
+								this.$toast.error('Server error.')
+							}
+						}), err =>{
+							this.$toast.error('Server is disconnected.')
+							console.log(err)
+						})
+					} else {
+						this.$toast.error('This option is disabled.')
+						return
+					}
+					
 				}
 				return
 				var payment = new UnitPay();

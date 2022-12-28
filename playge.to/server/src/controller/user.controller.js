@@ -52,6 +52,7 @@ async function userSignUp (req, res, next){
                                                                         password: md5(req.body.password),
                                                                         email: req.body.email,
                                                                         phoneNumber: req.body.phoneNumber,
+                                                                        // paymentwall: 0,
                                                                         coin: 0,
                                                                         netType: req.body.netType
                                                                     });

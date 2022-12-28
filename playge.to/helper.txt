@@ -4,11 +4,20 @@ https://playge.to/
 ssh root@137.184.195.2
 1qw2!QW@q
 
+
+137.184.195.2
+root:1Sqw2!QW@q752@O
+
+
 ### Database
 137.184.195.2
 3306
 webuser
 1bf9@43#0b075f7cA
+
+
+
+
 
 Username,date,charged Coin and maybe refrence ID
 
@@ -37,20 +46,7 @@ https://www.upload-4ever.com/akhai2shy4eu
 
 ## TASK
 
-Zax К, [12/17/2022 3:13 AM]
-if value of global in config = 1
-
-Zax К, [12/17/2022 3:13 AM]
-hide element of global
-
-Zax К, [12/17/2022 3:13 AM]
-and leave only SEA
-
-Zax К, [12/17/2022 3:13 AM]
-need to do that for signup and sign in
-
-Zax К, [12/17/2022 3:13 AM]
-can we do that?
-
-Zax К, [12/17/2022 3:13 AM]
-need do for global and sea so in future if i want to disable anyone of them
+您好。
+我是8男妹的。
+如果您愿意合作对IT方面， 请给我回答。
+谢谢。

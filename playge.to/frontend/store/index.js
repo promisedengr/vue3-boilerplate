@@ -7,7 +7,8 @@ const getDefaultState = () => {
       maintenance: 0,
       registration: 0,
       sea: 0,
-      global: 0
+      global: 0,
+      paymentwall: 0
     }
   }
 };
@@ -24,7 +25,8 @@ const state = () => ({
     maintenance: 0,
     registration: 0,
     sea: 0,
-    global: 0
+    global: 0,
+    paymentwall: 0
   },
   mobileTab: false
 });
@@ -69,6 +71,8 @@ const mutations = {
     state.config.registration = config.registration
     state.config.sea = config.sea
     state.config.global = config.global
+    state.config.paymentwall = config.paymentwall
+
   },
   SET_MOBILE_TAB(state, index) {
     if (index == 0)

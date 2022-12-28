@@ -93,9 +93,6 @@
 </script>
 <style lang="scss">
 
-    .log-table-box{
-
-    }
     .demo-center {
         position: absolute;
     top: 50%;

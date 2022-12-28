@@ -7,7 +7,8 @@ const User = function(user) {
   this.user_ip = user.user_ip;
   this.email = user.email;
   this.phoneNumber = user.phoneNumber
-  this.coin = user.coin
+  this.coin = user.coin;
+  this.paymentwall = user.paymentwall //  1 : admin_true
   this.netType = user.netType // 0: Global, 1: Sea
 };
 
